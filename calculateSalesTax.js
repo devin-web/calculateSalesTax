@@ -35,12 +35,13 @@ function calculateSalesTax(sales, taxRates) {
 
   for( var i = 0; i < sales.length; i++ ){
     var salesSum = sumSales(sales[i]);
-    if( newObj.hasOwnProperty( sales[i].name )) {
-      newObj[sales[i].name] = { totalSales: newObj[sales[i].name].totalSales + salesSum,
-                                totalTaxes: newObj[sales[i].name].totalTaxes + salesSum*taxRates[sales[i].province] };
+    var ithName = sales[i].name;
+    if( newObj.hasOwnProperty(  ithName )) {
+      newObj[ithName] = { totalSales: newObj[ithName].totalSales + salesSum,
+                          totalTaxes: newObj[ithName].totalTaxes + salesSum*taxRates[sales[i].province] };
     }
     else {
-      newObj[sales[i].name] = { totalSales: salesSum, totalTaxes: salesSum*taxRates[sales[i].province] };
+      newObj[ithName] = { totalSales: salesSum, totalTaxes: salesSum*taxRates[sales[i].province] };
     }
   }
   return newObj;
